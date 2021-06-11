@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -12,14 +13,7 @@ public class Main {
     }
 
     private static Collection removeDuplicates(Collection<?> collection) throws Exception{
-        Class<?> implClass = collection.getClass();
-        Collection returnColl = (Collection)implClass.getDeclaredConstructor().newInstance();
-        for (Object o: collection){
-            if (!returnColl.contains(o)){
-                returnColl.add(o);
-            }
-        }
-        return returnColl;
+        return collection.stream().collect(Collectors.toSet());
     }
     private static void print(Collection collection) {
         System.out.println();
